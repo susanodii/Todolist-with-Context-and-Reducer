@@ -17,7 +17,7 @@
 input{
   font-size: 17px;
   padding: 10px;
-  color: white;
+  
   }
   
   .add-btn{
@@ -58,4 +58,7 @@ margin-top: 2rem;
   
   .completed{
     text-decoration: line-through;
+  }
+  .auth{
+    color:white
   }
