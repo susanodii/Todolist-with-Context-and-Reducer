@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid'
 export const Todoist = () => {
   const [title, setTitle] = useState('')
 
-  const { addTodo, todos, toggleTodoComplete,  isAuthenticated, login } = useContext(TodoContext)
+  const { addTodo, todos, toggleTodoComplete,  isAuthenticated, login, deleteTodo } = useContext(TodoContext)
 
   // console.log(todos)
   console.log(uuidv4())
@@ -48,26 +48,27 @@ export const Todoist = () => {
         <div className="list-container">
          
           <ul>
-            {todos.map((todo) => {
-              return (
+            {todos.map(({isCompleted, id, title}) => {
+            //  const {isCompleted, id, title} = todo
+             return (
                 <li
-                className={todo.isCompleted ? 'completed' : null}
-                key={todo.id}>
-                  {todo.title}
+                className={isCompleted ? 'completed' : null}
+                key={id}>
+                  {title}
                   {/* view button */}
                   <div className="todo-action-buttons">
                     <button className="action-btn">👁</button>
                     {/* toggle comple button */}
                     <button
                       className="action-btn"
-                      onClick={() => toggleTodoComplete(todo.id)}
+                      onClick={() => toggleTodoComplete(id)}
                     >
-                      {todo. isCompleted? '❌' : '✅' }
+                      {isCompleted? '❌' : '✅' }
                     </button>
                     {/* edit button */}
                     <button className="action-btn">✍</button>
                     {/* delete button */}
-                    <button className="action-btn">🗑</button>
+                    <button className="action-btn" onClick={() => deleteTodo(id)}>🗑</button>
                   </div>
                 </li>
               )

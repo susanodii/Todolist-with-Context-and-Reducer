@@ -1,4 +1,4 @@
-import { ADD_TODO, LOGIN_USER, TOGGLE_TODO_COMPLETE } from './TodoTypes'
+import { ADD_TODO, LOGIN_USER, TOGGLE_TODO_COMPLETE, DELETE_TODO,} from './TodoTypes'
 
 const TodoReducer = (state, action) => {
   const { todos } = state
@@ -33,6 +33,14 @@ const TodoReducer = (state, action) => {
         ...state,
         isAuthenticated :true
       }
+
+      case DELETE_TODO:
+      return{
+        ...state,
+        todos : todos.filter((todo) => todo.id !== payload)
+      }
+
+
 
     default:
       return state
