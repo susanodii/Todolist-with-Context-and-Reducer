@@ -1,4 +1,4 @@
-import { ADD_TODO, LOGIN_USER, TOGGLE_TODO_COMPLETE, DELETE_TODO,} from './TodoTypes'
+import { ADD_TODO, DELETE_TODO, LOGIN_USER, TOGGLE_TODO_COMPLETE, UPDATE_TODO } from './TodoTypes'
 
 const TodoReducer = (state, action) => {
   const { todos } = state
@@ -10,6 +10,14 @@ const TodoReducer = (state, action) => {
         ...state,
         todos: [...state.todos, payload], //add todo logic here
       }
+
+      case UPDATE_TODO:
+        return{
+          ...state,
+          todos:todos.map((todo) =>
+            todo.id ===payload.id ? {...todo, title:payload.title}:todo
+          )
+        }
 
     case TOGGLE_TODO_COMPLETE:
       return {
