@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, LOGIN_USER, TOGGLE_TODO_COMPLETE, UPDATE_TODO } from './TodoTypes'
+import { ADD_TODO, DELETE_TODO, FIND_TODO_BY_ID, LOGIN_USER, TOGGLE_TODO_COMPLETE, UPDATE_TODO } from './TodoTypes'
 
 const TodoReducer = (state, action) => {
   const { todos } = state
@@ -48,7 +48,12 @@ const TodoReducer = (state, action) => {
         todos : todos.filter((todo) => todo.id !== payload)
       }
 
-
+case FIND_TODO_BY_ID:
+  return{
+    ...state,
+    todo:todos.find((todo) => todo.id === payload)
+    
+  }
 
     default:
       return state

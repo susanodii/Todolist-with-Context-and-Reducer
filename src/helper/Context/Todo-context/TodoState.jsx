@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, LOGIN_USER, TOGGLE_TODO_COMPLETE, UPDATE_TODO } from './TodoTypes'
+import { ADD_TODO, DELETE_TODO, FIND_TODO_BY_ID, LOGIN_USER, TOGGLE_TODO_COMPLETE, UPDATE_TODO } from './TodoTypes'
 
 import React from 'react'
 import TodoContext from './TodoContext'
@@ -8,6 +8,7 @@ import { useReducer } from 'react'
 const TodoState = ({ children }) => {
   const initialState = {
     todos:[],
+    todo: {},
     isAuthenticated : false
      }
 
@@ -35,6 +36,9 @@ const TodoState = ({ children }) => {
     dispatch({ type: UPDATE_TODO, payload:newtodoObj})
   }
 
+  const findTodoById = (todoId) =>{
+    dispatch({type:FIND_TODO_BY_ID, payload:todoId})
+  }
   return (
     <TodoContext.Provider
       value={{
@@ -44,6 +48,7 @@ const TodoState = ({ children }) => {
         addTodo,
         updateTodo,
         deleteTodo,
+        findTodoById,
         
         
          toggleTodoComplete,
