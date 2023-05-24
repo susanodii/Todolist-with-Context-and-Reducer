@@ -9,8 +9,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 export const Todoist = () => {
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  
   const [isEditMode, setIsEditMode] = useState(false)
   const [todoToEdit, setTodoToEdit] = useState({})
 
@@ -23,29 +21,25 @@ export const Todoist = () => {
     const newTodo = {
       id: uuidv4(),
       title: title,
-      description :description,
       isCompleted: false,
     }
     addTodo(newTodo)
     setTitle('')
-    setDescription('')
   }
 
   const handleEditMode = (todoObject)=>{
     setIsEditMode(true)
     setTodoToEdit(todoObject)
     setTitle(todoObject.title)
-    setDescription(todoObject.description)
     
   }
 
   const handleUpdateTodo = ()=>{
     console.log(title)
-    const newTodoObject = { id: todoToEdit.id, title, description};
+    const newTodoObject = { id: todoToEdit.id, title };
     updateTodo(newTodoObject);
     setIsEditMode(false);
     setTitle("");
-    setDescription('')
   }
   // const handleToggleComplete = (id) => {
   //   console.log(id)
@@ -75,11 +69,7 @@ export const Todoist = () => {
    value={title}
    onChange={(e) => setTitle(e.target.value)}
  />
- <input
-   placeholder="Task Description"
-   value={description}
-   onChange={(e) => setDescription(e.target.value)}
- />
+ 
  <button className="add-btn" onClick={handleAddTodo}>
    {' '}
    Add Todo
@@ -100,14 +90,13 @@ export const Todoist = () => {
           <ul>
             {todos.map((todo) => {
 
-              const {isCompleted, id, title, description } = todo
+              const {isCompleted, id, title, } = todo
             //  const {isCompleted, id, title} = todo
              return (
                 <li
                 className={isCompleted ? 'completed' : null}
                 key={id}>
                   {title}
-                  {description}
                   {/* view button */}
                   <div className="todo-action-buttons">
                   <Link to={`${id}`} >
