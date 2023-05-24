@@ -99,10 +99,10 @@ export const Todoist = () => {
                   {title}
                   {/* view button */}
                   <div className="todo-action-buttons">
-                  <Link to={`${id}`} >
+                  {/* <Link to={`${id}`} >
                     
                     <button className="action-btn">👁</button>
-                    </Link >
+                    </Link > */}
                     {/* toggle comple classNamebutton */}
                     <button
                       className="action-btn"

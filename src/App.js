@@ -13,7 +13,7 @@ function App() {
     <React.Fragment>
       <Routes>
 <Route index element={ <Todoist /> }/>
-<Route path =":todo_id" element={ < TodoDetails/>  }/>
+<Route path =':todo_id' element={ < TodoDetails/>  }/>
        
       </Routes>
      

@@ -1,4 +1,11 @@
-import { ADD_TODO, DELETE_TODO, FIND_TODO_BY_ID, LOGIN_USER, TOGGLE_TODO_COMPLETE, UPDATE_TODO } from './TodoTypes'
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  FIND_TODO_BY_ID,
+  LOGIN_USER,
+  TOGGLE_TODO_COMPLETE,
+  UPDATE_TODO,
+} from './TodoTypes'
 
 const TodoReducer = (state, action) => {
   const { todos } = state
@@ -11,13 +18,13 @@ const TodoReducer = (state, action) => {
         todos: [...state.todos, payload], //add todo logic here
       }
 
-      case UPDATE_TODO:
-        return{
-          ...state,
-          todos:todos.map((todo) =>
-            todo.id ===payload.id ? {...todo, title:payload.title}:todo
-          )
-        }
+    case UPDATE_TODO:
+      return {
+        ...state,
+        todos: todos.map((todo) =>
+          todo.id === payload.id ? { ...todo, title: payload.title } : todo
+        ),
+      }
 
     case TOGGLE_TODO_COMPLETE:
       return {
@@ -39,21 +46,20 @@ const TodoReducer = (state, action) => {
     case LOGIN_USER:
       return {
         ...state,
-        isAuthenticated :true
+        isAuthenticated: true,
       }
 
-      case DELETE_TODO:
-      return{
+    case DELETE_TODO:
+      return {
         ...state,
-        todos : todos.filter((todo) => todo.id !== payload)
+        todos: todos.filter((todo) => todo.id !== payload),
       }
 
-case FIND_TODO_BY_ID:
-  return{
-    ...state,
-    todo:todos.find((todo) => todo.id === payload)
-    
-  }
+    case FIND_TODO_BY_ID:
+      return {
+        ...state,
+        todo: todos.find((todo) => todo.id === payload),
+      }
 
     default:
       return state
