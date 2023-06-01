@@ -64,3 +64,13 @@ margin-top: 2rem;
   .auth{
     color:white
   }
+
+  .login-button{
+    padding-left:2rem;
+    padding-right: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+
+  }

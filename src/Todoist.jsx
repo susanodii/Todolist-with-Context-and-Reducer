@@ -2,18 +2,19 @@ import './TodoistContext.css'
 
 import React, { useContext, useState } from 'react'
 
-import { Link } from 'react-router-dom'
+
 import TodoContext from './helper/Context/Todo-context/TodoContext'
-import { useActionData } from 'react-router'
+
 import { v4 as uuidv4 } from 'uuid'
 
 export const Todoist = () => {
   const [title, setTitle] = useState('')
   const [isEditMode, setIsEditMode] = useState(false)
   const [todoToEdit, setTodoToEdit] = useState({})
-
+  // const [inputValue, setInputValue] = useState('');
   const { addTodo, todos, toggleTodoComplete,  isAuthenticated, login, deleteTodo,updateTodo } = useContext(TodoContext)
 
+  
   // console.log(todos)
   console.log(uuidv4())
 
@@ -126,7 +127,7 @@ export const Todoist = () => {
       <>
       
       <h3 className='auth'> Please log in</h3>
-      <button onClick={() => login()}> Login</button>
+      <button onClick={() => login()} className="login-button"> Login</button>
       </>
      )
       }
