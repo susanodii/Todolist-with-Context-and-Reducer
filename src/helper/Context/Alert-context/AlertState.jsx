@@ -5,7 +5,7 @@ import {AlertReducer} from './AlertReducer'
 import React from 'react'
 import { useReducer } from 'react'
 
-export const AlertState = ({children} ) => {
+const AlertState = ({children} ) => {
     const initialState = null
 
     const [state, dispatch] = useReducer(AlertReducer, initialState)
