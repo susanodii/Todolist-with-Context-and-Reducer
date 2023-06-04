@@ -3,16 +3,18 @@ import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import TodoState from './helper/Context/Todo-context/TodoState'
+import AlertState from './helper/Context/Alert-context/AlertState'
 import reportWebVitals from './reportWebVitals'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-     <TodoState> 
-      <BrowserRouter>
-      
-      <App />
-      </BrowserRouter>
-     </TodoState> 
+    <AlertState>
+      <TodoState>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </TodoState>
+    </AlertState>
   </React.StrictMode>
 )
 

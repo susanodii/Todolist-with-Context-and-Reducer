@@ -5,6 +5,7 @@ import {
   LOGIN_USER,
   TOGGLE_TODO_COMPLETE,
   UPDATE_TODO,
+ 
 } from './TodoTypes'
 
 const TodoReducer = (state, action) => {
@@ -61,6 +62,7 @@ const TodoReducer = (state, action) => {
         todo: todos.find((todo) => todo.id === payload),
       }
 
+      
     default:
       return state
   }
