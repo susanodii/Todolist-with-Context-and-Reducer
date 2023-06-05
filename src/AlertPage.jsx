@@ -1,30 +1,30 @@
-import './TodoistContext.css'
+import "./TodoistContext.css";
 
-import React, {useContext} from 'react'
+import React, { useContext } from "react";
 
-import AlertContext from './helper/Context/Alert-context/AlertContext'
-import { BsFillExclamationTriangleFill } from 'react-icons/bs'
+import AlertContext from "./helper/Context/Alert-context/AlertContext";
+import { BsFillExclamationTriangleFill } from "react-icons/bs";
+import "./alert.css";
 
 const AlertPage = () => {
-    const {alert} = useContext(AlertContext)
-    return (
-        alert !== null &&(
-            <div className=''>
-                {alert.type === 'error' &&(
-                    <BsFillExclamationTriangleFill style={{color:'red'}}/>
-                )}
-                <p className=''>
-                    {alert.msg}
-                    
-                </p>
-            </div>
-        )
-   
-    
+	const { alert } = useContext(AlertContext);
+	console.log(alert);
 
-    
-    
-  )
-}
+	return (
+		alert !== null && (
+			<div
+				className={`alert ${alert.alertType === "error" &&
+					`error-alert`} ${alert.alertType === "success" && `success-alert`}`}
+			>
+				{alert.alertType === "error" && (
+					<BsFillExclamationTriangleFill
+						style={{ color: "#fff", marginRight: "4px" }}
+					/>
+				)}
+				<p className=''>{alert.msg}</p>
+			</div>
+		)
+	);
+};
 
-export default AlertPage
+export default AlertPage;
