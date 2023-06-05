@@ -9,8 +9,10 @@ const AlertPage = () => {
     const {alert} = useContext(AlertContext)
     return (
         alert !== null &&(
-            <div className=''>
-                {alert.type === 'error' &&(
+            
+            <div className={`alert ${alert.alertType === 'error' && `error-alert`} ${alert.alertType === 'success' && `success-alert`}`}>
+
+ {alert.type === 'error' &&(
                     <BsFillExclamationTriangleFill style={{color:'red'}}/>
                 )}
                 <p className=''>

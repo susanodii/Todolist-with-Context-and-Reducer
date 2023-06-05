@@ -3,6 +3,7 @@ import './TodoistContext.css'
 import React, { useContext, useState } from 'react'
 
 import AlertContext from './helper/Context/Alert-context/AlertContext'
+import AlertPage from './AlertPage'
 import TodoContext from './helper/Context/Todo-context/TodoContext'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -25,14 +26,23 @@ export const Todoist = () => {
   // console.log(todos)
   console.log(uuidv4())
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (e) => {
+    e.preventDefault()
+    
     const newTodo = {
       id: uuidv4(),
       title: title,
       isCompleted: false,
     }
-    addTodo(newTodo)
+    if (title === ""){
+      setAlert('Please enter todo title', 'error' )
+    }
+    else{
+      addTodo(newTodo)
+      setAlert(' Added successfully', 'success')
     setTitle('')
+    }
+    
   }
 
   // FUNCTION TO HANDLE SUBMIT
@@ -43,54 +53,49 @@ export const Todoist = () => {
   }
   // function to handle  update todo
 
-  const handleUpdateTodo = () => {
-    console.log(title)
+  const handleUpdateTodo = (e) => {
+    // console.log(title)
+    e.preventDefault()
+    if (title === ""){
+      setAlert('Please enter updated', 'error' )
+    }
+    else{
+    //   addTodo(newTodo)
+    //   setAlert(' Added successfully', 'success')
+    // setTitle('')
     const newTodoObject = { id: todoToEdit.id, title }
     updateTodo(newTodoObject)
     setIsEditMode(false)
+    setAlert(' Updated successfully', 'success')
     setTitle('')
-  }
-  // const handleToggleComplete = (id) => {
-  //   console.log(id)
-  //   toggleTodoComplete(id)
-  // }
-  // ALERT IF USER CLICKS ON AN EMPTY BUTTON
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (title === '') {
-      setAlert('Kindly input a search word', 'error')
-    } else {
-      // fetchUsers(text)
-      const newTodoObject = { id: todoToEdit.id, title }
-      updateTodo(newTodoObject)
-      setIsEditMode(false)
-      setTitle(' ')
     }
+   
   }
+  
+  
 
   return (
     <div>
       {isAuthenticated ? (
         <>
           {isEditMode ? (
-            <form>
+            <form onSubmit={handleUpdateTodo}>
               <input
                 placeholder="Update todo title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <button className="edit-btn" onClick={handleUpdateTodo}>
+              <button className="edit-btn" >
                 {' '}
                 Update Todo
               </button>
             </form>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleAddTodo}>
               <input
                 placeholder="Enter todo title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                 onChange={(e) => setTitle(e.target.value)}
               />
 
               <button className="add-btn" onClick={handleAddTodo}>
@@ -102,6 +107,8 @@ export const Todoist = () => {
 
           <section>
             <div className="list-container">
+              {/* brought in the alert page to handle alert */}
+              {alert && <AlertPage/>}
               <ul>
                 {todos.map((todo) => {
                   const { isCompleted, id, title } = todo

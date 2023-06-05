@@ -50,7 +50,8 @@ margin-top: 2rem;
     align-items: flex-end;
     padding: 10px;
     color:white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+
   }
   
   .action-btn{
@@ -74,6 +75,23 @@ margin-top: 2rem;
     font-size: 1.2rem;
 
   }
-  .pg{
-color: red
-  }
+  
+
+  .alert{
+    display: inline-flex;
+    padding: 20px;
+   width: 100%;
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+.error-alert{
+    background-color: #f44336;
+    font-size: 1.5rem;
+}
+
+.success-alert{
+    background-color: #23e733;
+    font-size: 1.5rem;
+}
