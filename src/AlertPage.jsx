@@ -8,7 +8,8 @@ import "./alert.css";
 
 const AlertPage = () => {
 	const { alert } = useContext(AlertContext);
-	console.log(alert);
+
+	// added classes for styling, classes are conditionally applied using tenary op
 
 	return (
 		alert !== null && (
