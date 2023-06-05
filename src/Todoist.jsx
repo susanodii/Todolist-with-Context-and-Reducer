@@ -53,12 +53,23 @@ export const Todoist = () => {
 	};
 	// function to handle  update todo
 
-	const handleUpdateTodo = () => {
-		console.log(title);
-		const newTodoObject = { id: todoToEdit.id, title };
+	const handleUpdateTodo = (e) => {
+    e.preventDefault()
+		// console.log(title);
+    if (title === "") {
+			setAlert("please update the todo title", "error");
+		} else {
+			// addTodo(newTodo);
+			// setAlert("added successfully", "success");
+			// setTitle("");
+      const newTodoObject = { id: todoToEdit.id, title };
 		updateTodo(newTodoObject);
 		setIsEditMode(false);
+    setAlert("Updated successfully", "success");
 		setTitle("");
+		}
+    
+		
 	};
 	// const handleToggleComplete = (id) => {
 	//   console.log(id)
@@ -84,13 +95,13 @@ export const Todoist = () => {
 			{isAuthenticated ? (
 				<>
 					{isEditMode ? (
-						<form>
+						<form onSubmit={handleUpdateTodo}>
 							<input
 								placeholder='Update todo title'
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 							/>
-							<button className='edit-btn' onClick={handleUpdateTodo}>
+							<button className='edit-btn' >
 								{" "}
 								Update Todo
 							</button>
