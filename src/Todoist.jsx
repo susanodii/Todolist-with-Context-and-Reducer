@@ -21,6 +21,8 @@ export const Todoist = () => {
 		deleteTodo,
 		updateTodo,
 	} = useContext(TodoContext);
+
+	// brought in the alert context to be able to conditionally render the alert page when an alert exists
 	const { setAlert, alert } = useContext(AlertContext);
 
 	// console.log(todos)
@@ -33,6 +35,7 @@ export const Todoist = () => {
 			isCompleted: false,
 		};
 
+		// prevent empty todos from being submitted
 		if (title === "") {
 			setAlert("please enter a title", "error");
 		} else {
@@ -62,19 +65,19 @@ export const Todoist = () => {
 	//   toggleTodoComplete(id)
 	// }
 	// ALERT IF USER CLICKS ON AN EMPTY BUTTON
-	const handleSubmit = (e) => {
-		e.preventDefault();
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
 
-		if (title === "") {
-			setAlert("Kindly input a search word", "error");
-		} else {
-			// fetchUsers(text)
-			const newTodoObject = { id: todoToEdit.id, title };
-			updateTodo(newTodoObject);
-			setIsEditMode(false);
-			setTitle("");
-		}
-	};
+	// 	if (title === "") {
+	// 		setAlert("Kindly input a search word", "error");
+	// 	} else {
+	// 		// fetchUsers(text)
+	// 		const newTodoObject = { id: todoToEdit.id, title };
+	// 		updateTodo(newTodoObject);
+	// 		setIsEditMode(false);
+	// 		setTitle("");
+	// 	}
+	// };
 
 	return (
 		<div>
@@ -93,14 +96,14 @@ export const Todoist = () => {
 							</button>
 						</form>
 					) : (
-						<form>
+						<form onSubmit={handleAddTodo}>
 							<input
 								placeholder='Enter todo title'
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 							/>
 
-							<button className='add-btn' onClick={handleAddTodo}>
+							<button className='add-btn' type='submit'>
 								{" "}
 								Add Todo
 							</button>
@@ -109,6 +112,7 @@ export const Todoist = () => {
 
 					<section>
 						<div className='list-container'>
+							{/* brought in the alertpage to display the alerts on the page */}
 							{alert && <AlertPage />}
 							<ul>
 								{todos.map((todo) => {

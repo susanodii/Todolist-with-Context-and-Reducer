@@ -10,6 +10,8 @@ const AlertState = ({ children }) => {
 
 	const [state, dispatch] = useReducer(AlertReducer, initialState);
 
+	//changed parameter name "type" to "alertType"
+
 	const setAlert = (msg, alertType) => {
 		dispatch({
 			type: SET_ALERT,
@@ -19,7 +21,6 @@ const AlertState = ({ children }) => {
 		setTimeout(() => dispatch({ type: REMOVE_ALERT }), 3000);
 	};
 
-	console.log(state);
 	return (
 		<AlertContext.Provider
 			value={{
