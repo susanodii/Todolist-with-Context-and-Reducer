@@ -12,6 +12,8 @@ const AlertState = ({ children }) => {
 
 	//changed parameter name "type" to "alertType"
 
+	
+
 	const setAlert = (msg, alertType) => {
 		dispatch({
 			type: SET_ALERT,
